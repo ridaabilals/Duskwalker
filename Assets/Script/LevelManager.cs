@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 public class LevelManager : MonoBehaviour
 {
     public GameObject levelCompleteCanvas; 
-    public string nextSceneName = "Level2"; 
+    public string nextSceneName = "Leveltwo";
 
     [Header("Audio Settings")]
     public AudioSource levelAudioSource; // Drag your AudioSource here

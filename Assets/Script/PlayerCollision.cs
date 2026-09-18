@@ -59,6 +59,20 @@ public class PlayerCollision : MonoBehaviour
     {
         if (m_isDead || m_isInvincible) return;
 
+        if (collision.gameObject.CompareTag("Obstacle"))
+        {
+            if (menuManager != null)
+            {
+                menuManager.GameOver();
+            }
+            else
+            {
+                Debug.LogWarning("PlayerCollision: No MenuManager found in the scene, game over will not trigger.");
+            }
+
+            return;
+        }
+
         if (collision.gameObject.CompareTag("Enemy"))
         {
             // We use a small check here: if the player is falling, we treat it as a stomp.

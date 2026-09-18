@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BossAI : MonoBehaviour
+public class BossAI : MonoBehaviour, IDamageable
 {
     [Header("Movement Settings")]
     public float moveSpeed = 2f;

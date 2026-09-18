@@ -4,7 +4,7 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 26
-  productGUID: 6c9f46154ffc71640880e00d6d4cee4f
+  productGUID: 00000000000000000000000000000000
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
@@ -255,7 +255,7 @@ PlayerSettings:
   iOSAutomaticallyDetectAndAddCapabilities: 1
   appleEnableProMotion: 0
   shaderPrecisionModel: 0
-  clonedFromGUID: 4cf4c6243f4ba1742b94c8b0cf582f1f
+  clonedFromGUID: cf51930d2469e334392ff2b264da8d81
   templatePackageId: 
   templateDefaultScene: Assets/Scenes/SampleScene.unity
   useCustomMainManifest: 0
@@ -825,7 +825,7 @@ PlayerSettings:
   cloudProjectId: 79aa455c-dd35-48c8-9121-95e5d1ad391e
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: MyGame
+  projectName: Reko's Nightmare
   organizationId: ridaar516
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
