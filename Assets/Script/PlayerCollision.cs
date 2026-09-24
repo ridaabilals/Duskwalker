@@ -27,6 +27,8 @@ public class PlayerCollision : MonoBehaviour
     private Rigidbody2D m_rb;
     private SpriteRenderer m_spriteRenderer;
     private Transform m_spriteTransform;
+    private Animator m_animator;
+    private bool m_deathAnimationStarted;
     
     private bool m_isDead = false;
     private bool m_isInvincible = false;
@@ -39,6 +41,7 @@ public class PlayerCollision : MonoBehaviour
         m_spriteTransform = transform.Find("_Sprite");
         if (m_spriteTransform != null)
             m_spriteRenderer = m_spriteTransform.GetComponent<SpriteRenderer>();
+        m_animator = GetComponentInChildren<Animator>(true);
             
         UpdateHeartUI();
 
@@ -61,15 +64,7 @@ public class PlayerCollision : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Obstacle"))
         {
-            if (menuManager != null)
-            {
-                menuManager.GameOver();
-            }
-            else
-            {
-                Debug.LogWarning("PlayerCollision: No MenuManager found in the scene, game over will not trigger.");
-            }
-
+            Die();
             return;
         }
 
@@ -173,6 +168,20 @@ public class PlayerCollision : MonoBehaviour
         if (m_playerController != null)
             m_playerController.canMove = false;
 
+        if (m_animator != null)
+        {
+            if (HasAnimatorParameter("Dead", AnimatorControllerParameterType.Bool))
+            {
+                m_animator.SetBool("Dead", true);
+                m_deathAnimationStarted = true;
+            }
+            else if (HasAnimatorParameter("Death", AnimatorControllerParameterType.Trigger))
+            {
+                m_animator.SetTrigger("Death");
+                m_deathAnimationStarted = true;
+            }
+        }
+
         GetComponent<Collider2D>().enabled = false;
 
         if (m_rb != null)
@@ -187,12 +196,23 @@ public class PlayerCollision : MonoBehaviour
 
     private IEnumerator DieSequence()
     {
-        if (m_spriteTransform != null)
+        if (!m_deathAnimationStarted && m_spriteTransform != null)
             m_spriteTransform.localRotation = Quaternion.Euler(0, 0, 90f);
 
         yield return new WaitForSeconds(gameOverDelay);
 
         if (menuManager != null)
             menuManager.GameOver();
+    }
+
+    private bool HasAnimatorParameter(string parameterName, AnimatorControllerParameterType parameterType)
+    {
+        foreach (AnimatorControllerParameter parameter in m_animator.parameters)
+        {
+            if (parameter.name == parameterName && parameter.type == parameterType)
+                return true;
+        }
+
+        return false;
     }
 }

@@ -30,7 +30,7 @@ public class FixAnimatorParams
             return;
         }
 
-        bool changed = false;
+        //bool changed = false;
 
         AddParameterIfMissing(selected, "Speed", AnimatorControllerParameterType.Float);
         AddParameterIfMissing(selected, "Grounded", AnimatorControllerParameterType.Bool);
